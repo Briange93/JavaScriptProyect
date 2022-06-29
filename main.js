@@ -1,11 +1,3 @@
-//let nombre = prompt('Ingrese su nombre')
-//let apellido = prompt('Ingrese su apellido')
-//let output =  'Bienvenido' + ' ' + nombre + ' ' + apellido;
-
-//alert  (output)
-//console.log(output);
-
-
 function edadMinima(){
     const anio = 2022 ;
     const edadUsuario = anio - anioNacimientoUsuario ;
@@ -17,7 +9,7 @@ let anioNacimientoUsuario = parseInt(prompt("¿En que año naciste?"));
 const edadUsuario = edadMinima.edadUsuario;
 
 let edad = edadMinima()
-if(edad > 17){
+if(edad > 1){
 alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)
 
 console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
