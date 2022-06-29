@@ -106,41 +106,68 @@ const batterys = [
 let producto = parseInt(prompt('¿que estas buscando?\n 1. Mods \n 2. Atomizadores \n 3. Baterias. '));
 if( producto == 1){
     let message = 'Selecciona el mod que deseas ver'
-mods.forEach(mod => message += `\n${mod.id}.- ${mod.nombre}`);
-
-let modsIds = mods.map(mod => mod.id)
-let modId = parseInt(prompt(message));
-
+    mods.forEach(mod => message += `\n${mod.id}.- ${mod.nombre}`);
+    let modsIds = mods.map(mod => mod.id)
+    let modId = parseInt(prompt(message));
+    console.log(modId);
+    mostrarMod(modId);
+       
+    function mostrarMod(id){
+            const mod = mods.find(mod => mod.id === id);
+            console.log(mod);
+            for(const productoElegido of mods){
+                alert(`Nombre: ${mod.nombre}\n Potencia: ${mod.potencia}\n Precio: ${mod.precio}\n Fabricante: ${mod.fabricante}\n Descripcion: ${mod.descripcion}`)
+            return mod;
+        }
+    }
 }
 else if(producto == 2){
     let message = 'Selecciona el atomizador que deseas ver'
-atomizers.forEach(atomizers => message += `\n${atomizers.id}.- ${atomizers.nombre}`);
-let atoIds = atomizers.map(ato => ato.id)
-let atoId = parseInt(prompt(message));
-switch(message){
-    case 1:
-    
-        alert( atoId.toSource());
-
+    atomizers.forEach(atomizers => message += `\n${atomizers.id}.- ${atomizers.nombre}`);
+    let atoIds = atomizers.map(ato => ato.id)
+    let atoId = parseInt(prompt(message));
+    console.log(atoId);
+    mostrarAto(atoId);
+        function mostrarAto(id){
+            const ato = atomizers.find(atomizers => atomizers.id === id);
+            console.log(ato);
+            for(const productoElegido of atomizers){
+                alert(`Nombre: ${ato.nombre}\n Tipo: ${ato.tipo}\n Precio: ${ato.precio}\n Fabricante: ${ato.fabricante}\n Descripcion: ${ato.descripcion}`)
+            return ato;
+        }
 }
 }
 else if(producto == 3){
     let message = 'Selecciona la bateria que deseas ver'
-batterys.forEach(batterys => message += `\n${batterys.id}.- ${batterys.nombre}`);
+    batterys.forEach(batterys => message += `\n${batterys.id}.- ${batterys.nombre}`);
+    let battIds = batterys.map(batt => batt.id)
+    let battId = parseInt(prompt(message));
+    console.log(battId);
+    mostrarBatt(battId);
+     function mostrarBatt(id){
+            const batt = batterys.find(batt => batt.id === id);
+            console.log(batt);
+            
+            for(const productoElegido of batterys){
+                alert(`Nombre: ${batt.nombre}\n Capacidad: ${batt.capacidad}\n Precio: ${batt.precio}\n Fabricante: ${batt.fabricante}`)
+                return batt;
+             
+            }        
+       }
 
-let battIds = batterys.map(batt => batt.id)
-let atoId = parseInt(prompt(message));
-}else if (producto !== 1, 2,3){
-    alert('La opcion ingresada no es valida')
+      
+    
 }
+}
+else if (producto !== 1, 2,3){
+    alert('La opcion ingresada no es valida')
+
 
 
 
 }else{
     alert(`${nombreUsuario}, tenes ${edad} años , no podes comprar hasta que tengas 18 años`)
 }
-
-
 
 
  
