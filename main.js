@@ -9,7 +9,7 @@ let anioNacimientoUsuario = parseInt(prompt("¿En que año naciste?"));
 const edadUsuario = edadMinima.edadUsuario;
 
 let edad = edadMinima()
-if(edad > 1){
+if(edad > 17){
 alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)
 
 console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
@@ -158,11 +158,11 @@ else if(producto == 3){
       
     
 }
-}
+
 else if (producto !== 1, 2,3){
     alert('La opcion ingresada no es valida')
 
-
+}
 
 
 }else{
