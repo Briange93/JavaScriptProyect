@@ -1,3 +1,37 @@
-.body {
-    margin: 0;
+.body{
+    color: #198799;
+}
+.navbar-brand{
+    font-size: 30px;
+    color: #fff;
+    text-shadow:2px 6px 30px  #000 ;
+    
+}
+.nav-link{
+    margin-left: 20px ;
+    font-size: 20px;
+    transition: .5s all;
+}
+.nav-link:hover{
+background-color: #198754;
+border-radius: 10%;
+box-shadow:2px 6px 30px 0 #000 ;
+}
+.container-fluid{
+    background-color: rgb(35, 156, 126);
+}
+.btn{
+    color: #fff;
+}
+#contenedor{
+    display: flex;
+    margin: 30px;
+}
+#contenedor2{
+    display: flex;
+    margin: 30px;
+}
+#contenedor3{
+    display: flex;
+    margin: 30px;
 }
