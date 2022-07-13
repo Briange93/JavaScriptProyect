@@ -1,4 +1,3 @@
-
 function edadMinima(){
     const anio = 2022 ;
     const edadUsuario = anio - anioNacimientoUsuario ;
@@ -15,38 +14,40 @@ alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)
 
 console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
 
-
 const products = [
 
- {
-    id:1, 
-    nombre:'Mod Aegis Solo',
-    potencia: '100w',
-    precio: 14500,
-    fabricante: 'GeekVape',
-    descripcion:'Aegis Solo 100W de Geekvape es el mod más resistente, preparado para sobrevivir a agua, polvo, arena y golpes. Además de una gran potencia con tan solo una batería de 18650 (no incluida) que llega a 100W. Además incluye el AS-100 Chipset que le proporciona estabilidad y alto rendimiento.',
-    imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=814&useDensity=true&width=1280&height=913&tipoEscala=contain', 
-},
+    {
+        id:1, 
+        nombre:'Mod Aegis Solo',
+        potencia: '100w',
+        precio: 14500,
+        fabricante: 'GeekVape',
+        descripcion:'Aegis Solo 100W de Geekvape es el mod más resistente, preparado para sobrevivir a agua, polvo, arena y golpes. Además de una gran potencia con tan solo una batería de 18650 (no incluida) que llega a 100W. Además incluye el AS-100 Chipset que le proporciona estabilidad y alto rendimiento.',
+        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=814&useDensity=true&width=1280&height=913&tipoEscala=contain', 
+        cantidad:0,
+    },
 
-{
-    id:2, 
-    nombre:' Mod Grus 100w',
-    potencia: '100w',
-    precio: 13000,
-    fabricante: 'LostVape',
-    descripcion:'Lost Vape Grus 100w fabricado con material de aleación de zinc, es impresionantemente fuerte y duradero, necesita una sola batería (no incluida) 21700/20700/18650 con un adaptador en el paquete y la potencia máxima es de 100w. Con puerto de carga DC 5V tipo C, integra atomizadores de hasta 30mm pantalla TFT a color de 0.96 pulgadas, con un chip propietario de Lost Vape, high end a precio low cost.',
-    imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=818&useDensity=false&width=1280&height=720&tipoEscala=contain'
-}, 
+    {
+        id:2, 
+        nombre:' Mod Grus 100w',
+        potencia: '100w',
+        precio: 13000,
+        fabricante: 'LostVape',
+        descripcion:'Lost Vape Grus 100w fabricado con material de aleación de zinc, es impresionantemente fuerte y duradero, necesita una sola batería (no incluida) 21700/20700/18650 con un adaptador en el paquete y la potencia máxima es de 100w. Con puerto de carga DC 5V tipo C, integra atomizadores de hasta 30mm pantalla TFT a color de 0.96 pulgadas, con un chip propietario de Lost Vape, high end a precio low cost.',
+        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=818&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        cantidad:0,
+    }, 
 
-{
-    id:3, 
-    nombre:'Mod Mdura Pro',
-    potencia: '230w',
-    precio: 16000,
-    fabricante: 'Wotofo',
-    descripcion:'Wotofo MDura Pro Mod está fabricado con aleación de zinc y caucho duradero, resistente al agua, al polvo y a los golpes. Wotofo MDura Pro 230W Mod funciona con 2 baterías 18650 (No Incluidas) con una salida máxima de 230W. Wotofo MDura Pro Mod cuenta con nexCHIP con la tecnología más avanzada del mercado y pantalla TFT de 1.2 pulgadas, Potente modo VW emparejado con el modo TCR.',
-    imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=870&useDensity=false&width=1280&height=720&tipoEscala=contain'
-},
+    {
+        id:3, 
+        nombre:'Mod Mdura Pro',
+        potencia: '230w',
+        precio: 16000,
+        fabricante: 'Wotofo',
+        descripcion:'Wotofo MDura Pro Mod está fabricado con aleación de zinc y caucho duradero, resistente al agua, al polvo y a los golpes. Wotofo MDura Pro 230W Mod funciona con 2 baterías 18650 (No Incluidas) con una salida máxima de 230W. Wotofo MDura Pro Mod cuenta con nexCHIP con la tecnología más avanzada del mercado y pantalla TFT de 1.2 pulgadas, Potente modo VW emparejado con el modo TCR.',
+        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=870&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        cantidad:0,
+    },
 
     {
         id:4,
@@ -57,7 +58,6 @@ const products = [
         descripcion:'El GeekVape Peerless RDA es un atomizador de dripeo en seco con un deck reconstruible diseñado para soportar configuraciones de resistencias simples y más complejas, single coil y dual coil.', 
         imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=211&useDensity=false&width=1280&height=720&tipoEscala=contain'    
     },
-
 
     {
         id:5,
@@ -86,7 +86,7 @@ const products = [
         precio: 2400 ,
         fabricante:'LG' ,
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=331&useDensity=false&width=1280&height=720&tipoEscala=contain'
-        },
+    },
 
 
     {
@@ -105,9 +105,9 @@ const products = [
         precio: 2900 ,
         fabricante:'Samsung' ,
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=918&useDensity=false&width=1280&height=720&tipoEscala=contain'
-        },
+    },
 ] 
-const carrito = []
+const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
 
@@ -124,6 +124,7 @@ const renderProducts = (products, target) => {
                 <p class="card-text">${product.fabricante}</p>
                 <p class="card-text">Precio: $${product.precio}\n</p>
                 <p class="card-text">${product.descripcion}</p>
+                <p class="card-text">Cantidad: ${product.cantidad}</p>
                 
                 <button href=${product.id} class="btn btn-primary button">Añadir al carrito</button>
             </div>
@@ -137,14 +138,25 @@ const renderProducts = (products, target) => {
 const handleClick =(e) => {
     const id = parseInt(e.target.getAttribute('href'));
     const product = products.find(product => product.id === id);
+    if(carrito.some(el => el.id === product.id)){
+        const position = carrito.findIndex(el => el.id === product.id)
+        carrito[position].cantidad = carrito[position].cantidad + 1;
+    }else{
     carrito.push({
-        id: product.id,
+        id:product.id,
+        imgURL: product.imgURL,
         nombre: product.nombre,
+        fabricante: product.fabricante,
         precio: product.precio,
-        imgURL: product.imgURL
+        cantidad: 1,
+        descripcion: "",
+        
+        
      })
-    
-     renderProducts(carrito, contenedorCarrito);
+     console.log(carrito, contenedorCarrito);
+    }
+    localStorage.setItem('carrito', JSON.stringify(carrito)); 
+    renderProducts(carrito, contenedorCarrito);
     }
      const buscador = (array, texto) => {
         return array.filter(producto => producto.nombre.toLowerCase().includes(texto.toLowerCase()))
@@ -160,8 +172,8 @@ const handleClick =(e) => {
     
     input.addEventListener('input', buscar);
     renderProducts(products, contenedor);
+    renderProducts(carrito, contenedorCarrito);
 
-    console.log(renderProducts(carrito, contenedorCarrito));
 }else{
     alert(`${nombreUsuario}, tenes ${edad} años , no podes comprar hasta que tengas 18 años`)
 }

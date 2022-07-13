@@ -4,15 +4,13 @@ body {
     justify-content: center;
 }
 .navbar{
-    border: 0;
+    margin: 0;
 }
-
 .navbar-brand{
     font-size: 30px;
     color: #fff;
     text-shadow:2px 6px 30px  #000 ;
-    border:none;
-    
+    border:none;    
 }
 .nav-link{
     margin-left: 20px ;
@@ -33,7 +31,6 @@ box-shadow:2px 6px 20px 0 #000 ;
     color: #fff;
 }
 #contenedor{
-    display: row;
     margin: 30px;
 }
 
@@ -49,18 +46,44 @@ box-shadow:2px 6px 20px 0 #000 ;
 .card{
     background-color: #363636;
     color:hsl(160, 72%, 35%);
-    margin-left: 100px;
-
-    
+    margin-left: 100px;   
 }
 .card-img-top{
-   
     filter: contrast(.9);
-
-   
 }
 .div-card{
-
     margin: 10px;
-     
+}
+.modal-content{
+    background-color: #363636;
+}
+.modal-header{
+    background-color: #198754;
+}
+.modal-footer{
+    background-color: #198754;
+}
+.btn-comprar{
+    background-color: #363636;
+    border: none;
+}
+.btn-secondary{
+    background-color: #363636;
+}
+.btn-carrito{
+    background-color: #363636;
+    border: none;
+    color: #198754;
+}
+.btn-outline-success{
+    background-color: #363636;
+    color: #198754;
+}
+.form-control{
+    background-color: #363636;
+    color: #198754;
+}
+.button{
+    border: none;
+    color: #363636;
 }
