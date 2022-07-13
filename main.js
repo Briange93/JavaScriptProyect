@@ -13,7 +13,6 @@ if(edad > 17){
 alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)
 
 console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
-
 const products = [
 
     {
@@ -155,6 +154,7 @@ const handleClick =(e) => {
      })
      console.log(carrito, contenedorCarrito);
     }
+    //Se utiliza localStorage y JSON para guardar los productos en el carrito aun dsps de actualizar la pagina
     localStorage.setItem('carrito', JSON.stringify(carrito)); 
     renderProducts(carrito, contenedorCarrito);
     }
