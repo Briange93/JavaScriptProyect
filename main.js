@@ -1,4 +1,4 @@
-function edadMinima(){
+/*function edadMinima(){
     const anio = 2022 ;
     const edadUsuario = anio - anioNacimientoUsuario ;
     return edadUsuario;    
@@ -10,9 +10,26 @@ const edadUsuario = edadMinima.edadUsuario;
 
 let edad = edadMinima()
 if(edad > 17){
-alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)
+alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)*/
 
-console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
+//console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
+Swal.fire({
+    title: '<strong>¿Cual es tu nombre?</strong>',
+    icon: 'info',
+    html:
+      '<input id="inputNombre"><h2><strong>Ingresa tu año de nacimiento</strong></h2></input><input id= "inputEdad"></input>',
+      
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText:
+      '<i class="fa fa-thumbs-up confirmarEdad"></i>Ingresar',
+    confirmButtonAriaLabel: 'Thumbs up, great!',
+    cancelButtonText:
+      '<i class="fa fa-thumbs-down"></i>Cancelar',
+    cancelButtonAriaLabel: 'Thumbs down'
+  })
+
 const products = [
 
     {
@@ -106,6 +123,11 @@ const products = [
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=918&useDensity=false&width=1280&height=720&tipoEscala=contain'
     },
 ] 
+
+const renderEdad = () =>{
+
+}
+renderEdad();
 const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
@@ -115,9 +137,10 @@ const renderProducts = (products, target) => {
     products.map(product => {
         acumulador += `
         <div class="card m-4" style="width: 25rem;">
-            <div class="div-card"> 
-            <img src="${product.imgURL}" class="card-img-top" alt="${product.nombre}">
-            <div class="card-body">
+            <div class="div-card">
+                <button type="button" class="btn-close btn-cerrar" aria-label="Close"></button> 
+                <img src="${product.imgURL}" class="card-img-top" alt="${product.nombre}">
+                <div class="card-body">
             </div>
                 <h5 class="card-title">${product.nombre}</h5>
                 <p class="card-text">${product.fabricante}</p>
@@ -173,11 +196,11 @@ const handleClick =(e) => {
     input.addEventListener('input', buscar);
     renderProducts(products, contenedor);
     renderProducts(carrito, contenedorCarrito);
-
+/*
 }else{
     alert(`${nombreUsuario}, tenes ${edad} años , no podes comprar hasta que tengas 18 años`)
 }
 
-
+*/
 
 

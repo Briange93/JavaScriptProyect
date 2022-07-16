@@ -50,9 +50,11 @@ box-shadow:2px 6px 20px 0 #000 ;
 }
 .card-img-top{
     filter: contrast(.9);
+    margin-top: 10px;
 }
 .div-card{
     margin: 10px;
+    
 }
 .modal-content{
     background-color: #363636;
@@ -86,4 +88,9 @@ box-shadow:2px 6px 20px 0 #000 ;
 .button{
     border: none;
     color: #363636;
+}
+.btn-cerrar{
+    align-self: center;
+
+    filter: contrast(0);
 }
