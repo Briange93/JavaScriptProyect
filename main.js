@@ -1,34 +1,45 @@
-/*function edadMinima(){
-    const anio = 2022 ;
-    const edadUsuario = anio - anioNacimientoUsuario ;
-    return edadUsuario;    
-}
-
-const nombreUsuario = prompt("¿Cual es tu nombre?");
-let anioNacimientoUsuario = parseInt(prompt("¿En que año naciste?"));
-const edadUsuario = edadMinima.edadUsuario;
-
-let edad = edadMinima()
-if(edad > 17){
-alert(`Bienvenido ${nombreUsuario}, tenes ${edad} años`)*/
-
-//console.log(`Bienvenido ${nombreUsuario}, tenes ${edadUsuario} años`);
-Swal.fire({
+/*Swal.fire({
     title: '<strong>¿Cual es tu nombre?</strong>',
     icon: 'info',
     html:
-      '<input id="inputNombre"><h2><strong>Ingresa tu año de nacimiento</strong></h2></input><input id= "inputEdad"></input>',
+      '<form id="form-edad"><input type="text" id="nombre"><br><br><strong>Ingresa tu año de nacimiento</strong><br><br></input><input type"text" id="anioNacimiento"></form>',
       
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonText:
-      '<i class="fa fa-thumbs-up confirmarEdad"></i>Ingresar',
+      '<i id="btn-ingresar"class="fa fa-thumbs-up "></i>Ingresar',
     confirmButtonAriaLabel: 'Thumbs up, great!',
     cancelButtonText:
       '<i class="fa fa-thumbs-down"></i>Cancelar',
     cancelButtonAriaLabel: 'Thumbs down'
-  })
+  })*/
+
+Swal.fire('<form id="form-edad"><strong>¿Cual es tu nombre?</strong><input type="text" id="nombre"><strong>Ingresa tu año de nacimiento</strong><br></input><input type"text" id="anioNacimiento"><input type="submit" id="btn-ingresar" value="Ingresar"></input></form>')
+
+const nombre = document.getElementById('nombre');
+const formEdad = document.getElementById('form-edad');
+const anioNacimiento = localStorage.getItem('añoNacimiento');
+const nombreUsuario = document.getElementById('nombre-usuario');
+
+nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );
+
+const handleSubmit = (e) =>{
+e.preventDefault();
+localStorage.setItem('nombre', e.target.nombre.value);
+localStorage.setItem('añoNacimiento',e.target.anioNacimiento.value);
+}
+formEdad.onsubmit = handleSubmit;
+function edadMinima(){
+    const anio = 2022 ;
+    const edadUsuario = anio - anioNacimiento ;
+    return edadUsuario;    
+}
+
+let edad = edadMinima()
+
+if(edad > 17){
+
 
 const products = [
 
@@ -196,11 +207,12 @@ const handleClick =(e) => {
     input.addEventListener('input', buscar);
     renderProducts(products, contenedor);
     renderProducts(carrito, contenedorCarrito);
-/*
+
 }else{
-    alert(`${nombreUsuario}, tenes ${edad} años , no podes comprar hasta que tengas 18 años`)
+const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
+mensajeMenoriaEdad.innerText = 'Lo sentimos  ' + (localStorage.getItem('nombre') || 'Extraño') + ', no podes comprar hasta cumplir 18 años de edad.'
 }
 
-*/
+
 
 

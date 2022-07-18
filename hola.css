@@ -94,3 +94,16 @@ box-shadow:2px 6px 20px 0 #000 ;
 
     filter: contrast(0);
 }
+#nombre-usuario{
+    margin-left: 50px;
+    font-size: 30px;
+}
+
+#btn-ingresar{
+    background-color: #198754;
+}
+#contenedor-menores{
+    font-size: 60px;
+    color: #fff;
+
+}
