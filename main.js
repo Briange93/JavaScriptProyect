@@ -12,7 +12,7 @@ Swal.fire({
     localStorage.setItem('añoNacimiento',anioNacimiento.value);}})
     
     const nombreUsuario = document.getElementById('nombre-usuario');
-    const anioNacimiento =localStorage.getItem('anioNacimiento');
+    const anioNacimiento =localStorage.getItem('añoNacimiento');
   
   
     function edadMinima(){
@@ -20,12 +20,13 @@ Swal.fire({
         const edadUsuario = anio - anioNacimiento ;
         return edadUsuario;    
     }
+    addEventListener('click', edadMinima)
     
     let edad = edadMinima()
     console.log(edad);
     if(edad > 17){
        const incluirNombre = () =>{
-        nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );
+        nombreUsuario.innerText = 'Bienvenido ' + ( localStorage.getItem('nombre') || 'Extraño' );
        }
        addEventListener('click' ,incluirNombre)
             
