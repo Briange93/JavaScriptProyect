@@ -12,19 +12,23 @@ Swal.fire({
     localStorage.setItem('añoNacimiento',anioNacimiento.value);}})
     
     const nombreUsuario = document.getElementById('nombre-usuario');
-    const anioNacimiento =parseInt(localStorage.getItem('anioNacimiento'));
+    const anioNacimiento =localStorage.getItem('anioNacimiento');
   
   
     function edadMinima(){
         const anio = 2022 ;
-        const edadUsuario = parseInt(anio) - anioNacimiento ;
+        const edadUsuario = anio - anioNacimiento ;
         return edadUsuario;    
     }
     
     let edad = edadMinima()
     console.log(edad);
     if(edad > 17){
-        nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );    
+       const incluirNombre = () =>{
+        nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );
+       }
+       addEventListener('click' ,incluirNombre)
+            
 
 const products = [
 
