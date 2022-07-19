@@ -1,45 +1,30 @@
-/*Swal.fire({
-    title: '<strong>¿Cual es tu nombre?</strong>',
-    icon: 'info',
-    html:
-      '<form id="form-edad"><input type="text" id="nombre"><br><br><strong>Ingresa tu año de nacimiento</strong><br><br></input><input type"text" id="anioNacimiento"></form>',
-      
-    showCloseButton: true,
-    showCancelButton: true,
+Swal.fire({
+    title: 'Bienvenido',
+    html: `<input type="text" class="swal2-input name" placeholder="Nombre">
+    <input type="text" class="swal2-input anioNacimiento" placeholder="Año de Nacimiento">`,
+    confirmButtonText: 'Ingresar',
     focusConfirm: false,
-    confirmButtonText:
-      '<i id="btn-ingresar"class="fa fa-thumbs-up "></i>Ingresar',
-    confirmButtonAriaLabel: 'Thumbs up, great!',
-    cancelButtonText:
-      '<i class="fa fa-thumbs-down"></i>Cancelar',
-    cancelButtonAriaLabel: 'Thumbs down'
-  })*/
+    preConfirm: () => {
+      const login = Swal.getPopup().querySelector('.name')
+      const anioNacimiento = Swal.getPopup().querySelector('.anioNacimiento')
 
-Swal.fire('<form id="form-edad"><strong>¿Cual es tu nombre?</strong><input type="text" id="nombre"><strong>Ingresa tu año de nacimiento</strong><br></input><input type"text" id="anioNacimiento"><input type="submit" id="btn-ingresar" value="Ingresar"></input></form>')
-
-const nombre = document.getElementById('nombre');
-const formEdad = document.getElementById('form-edad');
-const anioNacimiento = localStorage.getItem('añoNacimiento');
-const nombreUsuario = document.getElementById('nombre-usuario');
-
-nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );
-
-const handleSubmit = (e) =>{
-e.preventDefault();
-localStorage.setItem('nombre', e.target.nombre.value);
-localStorage.setItem('añoNacimiento',e.target.anioNacimiento.value);
-}
-formEdad.onsubmit = handleSubmit;
-function edadMinima(){
-    const anio = 2022 ;
-    const edadUsuario = anio - anioNacimiento ;
-    return edadUsuario;    
-}
-
-let edad = edadMinima()
-
-if(edad > 17){
-
+    localStorage.setItem('nombre', login.value);
+    localStorage.setItem('añoNacimiento',anioNacimiento.value);}})
+    
+    const nombreUsuario = document.getElementById('nombre-usuario');
+    const anioNacimiento =parseInt(localStorage.getItem('anioNacimiento'));
+  
+  
+    function edadMinima(){
+        const anio = 2022 ;
+        const edadUsuario = parseInt(anio) - anioNacimiento ;
+        return edadUsuario;    
+    }
+    
+    let edad = edadMinima()
+    console.log(edad);
+    if(edad > 17){
+        nombreUsuario.innerText = 'Bienvenido ' +( localStorage.getItem('nombre') || 'Extraño' );    
 
 const products = [
 
@@ -83,7 +68,8 @@ const products = [
         precio: 4900 ,
         fabricante:'GeekVape' ,
         descripcion:'El GeekVape Peerless RDA es un atomizador de dripeo en seco con un deck reconstruible diseñado para soportar configuraciones de resistencias simples y más complejas, single coil y dual coil.', 
-        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=211&useDensity=false&width=1280&height=720&tipoEscala=contain'    
+        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=211&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
+        cantidad:0,
     },
 
     {
@@ -93,7 +79,8 @@ const products = [
         precio: 9500 ,
         fabricante:'YachtVape' ,
         descripcion: 'Yachtvape Eclipse RTA es una colaboración entre Mike Vapes y YachtVape. Yachtvape Eclipse presenta un deck de estilo recurvo sin postes de 4 ranuras para soportar resistencias en sentido contrario a las agujas del reloj y en el sentido de las agujas del reloj',
-        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1020&useDensity=false&width=1280&height=720&tipoEscala=contain'
+        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1020&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        cantidad:0,
     },
 
     {
@@ -103,7 +90,8 @@ const products = [
         precio: 11000 ,
         fabricante:'HellVape' , 
         descripcion:'Hellvape Helheim S RDTA está diseñado para vapeo DL y DTL, single coil en deck sin postes. El diseño visualmente impresionante es que su sistema de flujo de aire de panal dual, que permite tres tipos de flujo de aire, incluido el flujo de aire inferior.',
-        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1040&useDensity=false&width=1280&height=720&tipoEscala=contain'    
+        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1040&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
+        cantidad:0,
     },
 
     {
@@ -112,7 +100,8 @@ const products = [
         capacidad: '20A',
         precio: 2400 ,
         fabricante:'LG' ,
-        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=331&useDensity=false&width=1280&height=720&tipoEscala=contain'
+        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=331&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        cantidad:0,
     },
 
 
@@ -122,7 +111,8 @@ const products = [
         capacidad: '35A',
         precio: 2700 ,
         fabricante:'Sony' ,
-        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=886&useDensity=false&width=1280&height=720&tipoEscala=contain'    
+        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=886&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
+        cantidad:0,
     },
 
     {
@@ -131,14 +121,12 @@ const products = [
         capacidad: '30A',
         precio: 2900 ,
         fabricante:'Samsung' ,
-        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=918&useDensity=false&width=1280&height=720&tipoEscala=contain'
+        imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=918&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        cantidad:0,
     },
 ] 
 
-const renderEdad = () =>{
 
-}
-renderEdad();
 const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
@@ -168,6 +156,7 @@ const renderProducts = (products, target) => {
    const buttons = document.querySelectorAll('.button');
    buttons.forEach(button => button.addEventListener('click', handleClick));
 }
+
 const handleClick =(e) => {
     const id = parseInt(e.target.getAttribute('href'));
     const product = products.find(product => product.id === id);
@@ -181,10 +170,7 @@ const handleClick =(e) => {
         nombre: product.nombre,
         fabricante: product.fabricante,
         precio: product.precio,
-        cantidad: 1,
         descripcion: "",
-        
-        
      })
      console.log(carrito, contenedorCarrito);
     }
