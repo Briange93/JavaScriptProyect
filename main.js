@@ -1,3 +1,4 @@
+// SweetAlert completamente funcional
 Swal.fire({
     title: 'Bienvenido',
     html: `<input type="text" class="swal2-input name" placeholder="Nombre">
@@ -6,31 +7,32 @@ Swal.fire({
     focusConfirm: false,
     preConfirm: () => {
       const login = Swal.getPopup().querySelector('.name')
-      const anioNacimiento = Swal.getPopup().querySelector('.anioNacimiento')
-
+      const anioNacimiento = Swal.getPopup().querySelector('.anioNacimiento')      
+      
     localStorage.setItem('nombre', login.value);
-    localStorage.setItem('añoNacimiento',anioNacimiento.value);}})
-    
+    localStorage.setItem('añoNacimiento',anioNacimiento.value);}
+})
+
     const nombreUsuario = document.getElementById('nombre-usuario');
     const anioNacimiento =localStorage.getItem('añoNacimiento');
-  
-  
-    function edadMinima(){
+    const validacionEdad = document.getElementById('input');
+    function edadMinima(e){
         const anio = 2022 ;
         const edadUsuario = anio - anioNacimiento ;
         return edadUsuario;    
     }
-    addEventListener('click', edadMinima)
-    
     let edad = edadMinima()
-    console.log(edad);
-    if(edad > 17){
+    validacionEdad.onchange = edadMinima;
+          addEventListener('click', validacionEdad);
+          console.log(edad);
+    //Todavia no pude hacer que el if funcione junto a la funcion edadMinima
+    //sin actualizar la pagina.  
+          if(edad > 17){
        const incluirNombre = () =>{
         nombreUsuario.innerText = 'Bienvenido ' + ( localStorage.getItem('nombre') || 'Extraño' );
        }
        addEventListener('click' ,incluirNombre)
-            
-
+       
 const products = [
 
     {
@@ -198,12 +200,7 @@ const handleClick =(e) => {
     input.addEventListener('input', buscar);
     renderProducts(products, contenedor);
     renderProducts(carrito, contenedorCarrito);
-
 }else{
 const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
 mensajeMenoriaEdad.innerText = 'Lo sentimos  ' + (localStorage.getItem('nombre') || 'Extraño') + ', no podes comprar hasta cumplir 18 años de edad.'
 }
-
-
-
-
