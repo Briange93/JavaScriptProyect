@@ -1,40 +1,5 @@
-// SweetAlert completamente funcional
-Swal.fire({
-    title: 'Bienvenido',
-    html: `<input type="text" class="swal2-input name" placeholder="Nombre">
-    <input type="text" class="swal2-input anioNacimiento" placeholder="Año de Nacimiento">`,
-    confirmButtonText: 'Ingresar',
-    focusConfirm: false,
-    preConfirm: () => {
-      const login = Swal.getPopup().querySelector('.name')
-      const anioNacimiento = Swal.getPopup().querySelector('.anioNacimiento')      
-      
-    localStorage.setItem('nombre', login.value);
-    localStorage.setItem('añoNacimiento',anioNacimiento.value);}
-})
-
-    const nombreUsuario = document.getElementById('nombre-usuario');
-    const anioNacimiento =localStorage.getItem('añoNacimiento');
-    const validacionEdad = document.getElementById('input');
-    function edadMinima(e){
-        const anio = 2022 ;
-        const edadUsuario = anio - anioNacimiento ;
-        return edadUsuario;    
-    }
-    let edad = edadMinima()
-    validacionEdad.onchange = edadMinima;
-          addEventListener('click', validacionEdad);
-          console.log(edad);
-    //Todavia no pude hacer que el if funcione junto a la funcion edadMinima
-    //sin actualizar la pagina.  
-          if(edad > 17){
-       const incluirNombre = () =>{
-        nombreUsuario.innerText = 'Bienvenido ' + ( localStorage.getItem('nombre') || 'Extraño' );
-       }
-       addEventListener('click' ,incluirNombre)
-       
+//los productos los pondria al principio por ahora, fuera de toda funcion, para que sean globales.
 const products = [
-
     {
         id:1, 
         nombre:'Mod Aegis Solo',
@@ -45,7 +10,6 @@ const products = [
         imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=814&useDensity=true&width=1280&height=913&tipoEscala=contain', 
         cantidad:0,
     },
-
     {
         id:2, 
         nombre:' Mod Grus 100w',
@@ -56,7 +20,6 @@ const products = [
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=818&useDensity=false&width=1280&height=720&tipoEscala=contain',
         cantidad:0,
     }, 
-
     {
         id:3, 
         nombre:'Mod Mdura Pro',
@@ -67,7 +30,6 @@ const products = [
         imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=870&useDensity=false&width=1280&height=720&tipoEscala=contain',
         cantidad:0,
     },
-
     {
         id:4,
         nombre:'Pearless 24mm' ,
@@ -78,7 +40,6 @@ const products = [
         imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=211&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
         cantidad:0,
     },
-
     {
         id:5,
         nombre:'Eclipse 24mm' ,
@@ -89,7 +50,6 @@ const products = [
         imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1020&useDensity=false&width=1280&height=720&tipoEscala=contain',
         cantidad:0,
     },
-
     {
         id:6,
         nombre:'Helheim S' ,
@@ -100,7 +60,6 @@ const products = [
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1040&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
         cantidad:0,
     },
-
     {
         id:7,
         nombre:'LG Genuine' ,
@@ -110,8 +69,6 @@ const products = [
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=331&useDensity=false&width=1280&height=720&tipoEscala=contain',
         cantidad:0,
     },
-
-
     {
         id:8,
         nombre:'Sony VTC5' ,
@@ -121,7 +78,6 @@ const products = [
         imgURL: 'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=886&useDensity=false&width=1280&height=720&tipoEscala=contain'    ,
         cantidad:0,
     },
-
     {
         id:9,
         nombre:'Samsung 30T' ,
@@ -132,11 +88,26 @@ const products = [
         cantidad:0,
     },
 ] 
+//chequeo si hay datos en el storage
+const edadStorage = localStorage.getItem('anioNacimiento');
 
+function edadMinima (nacimiento) {
+    const anio = 2022 ;
+    const edadUsuario = anio - nacimiento ;
+    return edadUsuario;    
+}
 
+const nombreUsuario = document.getElementById('nombre-usuario');
+const anioNacimiento =localStorage.getItem('añoNacimiento');
+const input = document.getElementById('searchInput');
+const botonSalir = document.getElementById('btn-salir');
 const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
+const mensajeMenoriaEdad = document.getElementById('contenedor-menores')
+;
+
+
 
 const renderProducts = (products, target) => {
     let acumulador = '';
@@ -152,7 +123,7 @@ const renderProducts = (products, target) => {
                 <p class="card-text">${product.fabricante}</p>
                 <p class="card-text">Precio: $${product.precio}\n</p>
                 <p class="card-text">${product.descripcion}</p>
-                <p class="card-text">Cantidad: ${product.cantidad}</p>
+                
                 
                 <button href=${product.id} class="btn btn-primary button">Añadir al carrito</button>
             </div>
@@ -161,10 +132,10 @@ const renderProducts = (products, target) => {
     )
    target.innerHTML = acumulador;
    const buttons = document.querySelectorAll('.button');
-   buttons.forEach(button => button.addEventListener('click', handleClick));
+   buttons.forEach(button => button.addEventListener('click', handleAgregarCarrito));
 }
 
-const handleClick =(e) => {
+const handleAgregarCarrito =(e) => {
     const id = parseInt(e.target.getAttribute('href'));
     const product = products.find(product => product.id === id);
     if(carrito.some(el => el.id === product.id)){
@@ -178,29 +149,91 @@ const handleClick =(e) => {
         fabricante: product.fabricante,
         precio: product.precio,
         descripcion: "",
+        cantidad:1,
      })
      console.log(carrito, contenedorCarrito);
     }
     //Se utiliza localStorage y JSON para guardar los productos en el carrito aun dsps de actualizar la pagina
     localStorage.setItem('carrito', JSON.stringify(carrito)); 
     renderProducts(carrito, contenedorCarrito);
-    }
+}
+
+
+function chequearEdad (edad) {
+    console.log(edad)
+    if(edad > 17){
+       const incluirNombre = () =>{
+        nombreUsuario.innerText = 'Bienvenido ' + ( localStorage.getItem('nombre') || 'Extraño' );
+       }
+       addEventListener('click' ,incluirNombre)
+       botonSalir.innerText ='Salir'
+
      const buscador = (array, texto) => {
         return array.filter(producto => producto.nombre.toLowerCase().includes(texto.toLowerCase()))
     }
-   const form = document.getElementById('form');
-    const input = document.getElementById('searchInput');
+//    const form = document.getElementById('form');
+
     
     const buscar = (e) => {
-        e.preventDefault();
-    
+        e.preventDefault();    
         renderProducts(buscador(products, input.value), contenedor);
     }
-    
+    mensajeMenoriaEdad.innerText= '';
+
     input.addEventListener('input', buscar);
     renderProducts(products, contenedor);
     renderProducts(carrito, contenedorCarrito);
+
+
 }else{
-const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
+
+contenedor.innerHTML = '';
+contenedorCarrito.innerHTML = '';
 mensajeMenoriaEdad.innerText = 'Lo sentimos  ' + (localStorage.getItem('nombre') || 'Extraño') + ', no podes comprar hasta cumplir 18 años de edad.'
+botonSalir.innerText = 'Ingresar'
 }
+}
+
+function ingresoUsuario () {
+    Swal.fire({
+        title: 'Bienvenido',
+        html: `<input type="text" class="swal2-input name" placeholder="Nombre">
+        <input type="text" class="swal2-input anioNacimiento" placeholder="Año de Nacimiento">`,
+        confirmButtonText: 'Ingresar',
+        focusConfirm: false,
+        preConfirm: () => {
+          const login = Swal.getPopup().querySelector('.name')
+          const anioNacimiento = Swal.getPopup().querySelector('.anioNacimiento')      
+          
+        localStorage.setItem('nombre', login.value);
+        localStorage.setItem('anioNacimiento',anioNacimiento.value);
+        chequearEdad(edadMinima(anioNacimiento.value))
+    }
+    })
+}
+
+function handleSalir () {
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('anioNacimiento');
+    ingresoUsuario ()
+}
+
+if (edadStorage) {
+    chequearEdad(edadMinima(edadStorage));
+} else {
+// SweetAlert completamente funcional
+    ingresoUsuario()
+}
+
+botonSalir.addEventListener('click', handleSalir)
+
+/*class ProductoCarrito{
+    constructor(...products){
+        this.imagen = products.imgURL;
+        this.nombre = products.nombre;
+        this.precio = products.precio;
+        this.cantidad = products.cantidad;
+    }
+}
+const productoElegido = new ProductoCarrito(products.imagen, products.nombre, products.precio, products.cantidad);
+carrito.push(productoElegido)*/
