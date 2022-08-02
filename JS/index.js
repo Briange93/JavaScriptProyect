@@ -47,7 +47,7 @@ const products = [
         precio: 9500 ,
         fabricante:'YachtVape' ,
         descripcion: 'Yachtvape Eclipse RTA es una colaboración entre Mike Vapes y YachtVape. Yachtvape Eclipse presenta un deck de estilo recurvo sin postes de 4 ranuras para soportar resistencias en sentido contrario a las agujas del reloj y en el sentido de las agujas del reloj',
-        imgURL:'https://ss-static-01.esmsv.com/id/110613/productos/obtenerimagen/?id=1020&useDensity=false&width=1280&height=720&tipoEscala=contain',
+        imgURL:'https://www.vapvip.com/tienda/24270-large_default/eclipse-rta-atomizador.jpg',
         cantidad:0,
     },
     {
@@ -142,14 +142,14 @@ const handleAgregarCarrito =(e) => {
         const position = carrito.findIndex(el => el.id === product.id)
         carrito[position].cantidad = carrito[position].cantidad + 1;
     }else{
-    carrito.push({
-        id:product.id,
-        imgURL: product.imgURL,
-        nombre: product.nombre,
-        fabricante: product.fabricante,
-        precio: product.precio,
-        descripcion: "",
-        cantidad:1,
+        carrito.push({
+            id:product.id,
+            imgURL: product.imgURL,
+            nombre: product.nombre,
+            fabricante: product.fabricante,
+            precio: product.precio,
+            descripcion: "",
+            cantidad: product.cantidad
      })
      console.log(carrito, contenedorCarrito);
     }
