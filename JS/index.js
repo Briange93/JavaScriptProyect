@@ -28,7 +28,7 @@ const renderProducts = ( target) => {
         acumulador += `
         <div class="card m-4" style="width: 25rem;">
             <div class="div-card">
-                <button type="button" class="btn-close btn-cerrar" aria-label="Close"></button> 
+                 
                 <img src="${product.imgURL}" class="card-img-top" alt="${product.nombre}">
                 <div class="card-body">
             </div>
@@ -66,21 +66,42 @@ const handleAgregarCarrito =(e) => {
             fabricante: product.fabricante,
             precio: product.precio,
             descripcion: "",
-            cantidad: product.cantidad
+            cantidad: 1
      })
-     console.log(carrito, contenedorCarrito);
+     console.log(contenedorCarrito);
     }
-    //Se utiliza localStorage y JSON para guardar los productos en el carrito aun dsps de actualizar la pagina
-    localStorage.setItem('carrito', JSON.stringify(carrito)); 
+    ingresoCarrito(carrito);
     renderProducts(carrito, contenedorCarrito);
+    renderCarrito(carrito,contenedorCarrito);
 })}
+const renderCarrito = (caract, target) => {
+    let acumulador = '';
+    caract.map(product => {
+        acumulador += `
+        <div class=" col-4 m-2" style="width: 18rem" ;>
+            <div class="card-body m-4">
+                <h5 class=" m-2 card-title">${product.nombre}</h5>
+                <img src=${product.imgURL} width="100" height="175" class="card-img-top" alt="${product.nombre}">
+                <p class="mt-2 card-text"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Precio Total: $${product.precio * product.cantidad}.</p>
+                <div class="row justify-content-around">
+                    <button ref=${product.id} class="boton_venta BCA btn btn-secondary my-2 col-md-3" id="botonCarritoAgregar" onclick= eliminarProducto("${product.id}",0)> Agregar </button>
+                    <button ref=${product.id} class="boton_venta BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.codigo}",1)> Quitar </button>
+                </div>
+            </div>
+        </div>   
+        `
+    })
+
+    target.innerHTML = acumulador;   
+
+}
 
 
 function chequearEdad (edad) {
     console.log(edad)
     if(edad > 17){
        const incluirNombre = () =>{
-        nombreUsuario.innerText = 'Bienvenido ' + ( localStorage.getItem('nombre') || 'Extraño' );
+        nombreUsuario.innerText =( localStorage.getItem('nombre') || '' );
        }
        addEventListener('click' ,incluirNombre)
        botonSalir.innerText ='Salir'
@@ -88,7 +109,7 @@ function chequearEdad (edad) {
      const buscador = (array, texto) => {
         return array.filter(producto => producto.nombre.toLowerCase().includes(texto.toLowerCase()))
     }
-//    const form = document.getElementById('form');
+    
 
     
     const buscar = (e) => {
@@ -138,19 +159,12 @@ function handleSalir () {
 if (edadStorage) {
     chequearEdad(edadMinima(edadStorage));
 } else {
-// SweetAlert completamente funcional
+
     ingresoUsuario()
 }
 
 botonSalir.addEventListener('click', handleSalir)
 
-/*class ProductoCarrito{
-    constructor(...products){
-        this.imagen = products.imgURL;
-        this.nombre = products.nombre;
-        this.precio = products.precio;
-        this.cantidad = products.cantidad;
-    }
+function ingresoCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
-const productoElegido = new ProductoCarrito(products.imagen, products.nombre, products.precio, products.cantidad);
-carrito.push(productoElegido)*/
