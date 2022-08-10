@@ -123,6 +123,7 @@ function chequearEdad (edad) {
     input.addEventListener('input', buscar);
     renderProducts(contenedor);
     renderProducts(carrito, contenedorCarrito);
+    renderCarrito(carrito,contenedorCarrito);
 
 
 }else{
