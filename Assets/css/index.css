@@ -1,10 +1,11 @@
 body {
-    background-color: hsl(0, 0%, 90%);
+    background-color: hsl(160, 72%, 35%);
     margin: 0;
     justify-content: center;
 }
 .navbar{
     margin: 0;
+    background-color: #FED9B7;
 }
 .navbar-brand{
     font-size: 30px;
@@ -23,7 +24,7 @@ border-radius: 10%;
 box-shadow:2px 6px 20px 0 #000 ;
 }
 .container-fluid{
-    background-color: rgb(35, 156, 126);
+    background-color: hsl(160, 72%, 35%);
     border: 0;
 
 }
@@ -35,7 +36,7 @@ box-shadow:2px 6px 20px 0 #000 ;
 }
 
 .container{
-    background-color: hsl(160, 72%, 35%)9 !important;
+    background-color: hsl(160, 72%, 35%) !important;
     
     margin: center;
 }
@@ -44,8 +45,8 @@ box-shadow:2px 6px 20px 0 #000 ;
     background-color: hsl(160, 72%, 35%);
 }
 .card{
-    background-color: #363636;
-    color:hsl(160, 72%, 35%);
+    background-color: rgb(48, 48, 48);
+    color:hsl(311, 100%, 93%);
     margin-left: 100px;   
 }
 .card-img-top{
@@ -57,7 +58,7 @@ box-shadow:2px 6px 20px 0 #000 ;
     
 }
 .modal-content{
-    background-color: #363636;
+    background-color: hsl(160, 72%, 35%);
 }
 .modal-header{
     background-color: #198754;
@@ -110,4 +111,7 @@ box-shadow:2px 6px 20px 0 #000 ;
     font-size: 60px;
     color: #fff;
 
+}
+#footer{
+    background-color: #198754;
 }
