@@ -11,7 +11,6 @@ const nombreUsuario = document.getElementById('nombre-usuario');
 const anioNacimiento =localStorage.getItem('añoNacimiento');
 const input = document.getElementById('searchInput');
 const botonSalir = document.getElementById('btn-salir');
-
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
 const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
@@ -84,9 +83,9 @@ const renderCarrito = (caract, target) => {
             <div class="card-body m-4">
                 <h5 class=" m-2 card-title">${product.nombre}</h5>
                 <img src=${product.imgURL} width="100" height="175" class="card-img-top" alt="${product.nombre}">
-                <p class="mt-2 card-text"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Precio Total: $${product.precio * product.cantidad}.</p>
+                <p class="mt-2 card-text"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
-                    <button ref=${product.id} class="boton_venta BCA btn btn-secondary my-2 col-md-3" id="botonCarritoAgregar" onclick= eliminarProducto("${product.id}",0)> Agregar </button>
+                    <button ref=${product.id} class="btn btn-primary button my-2 col-md-3">Añadir al carrito</button>
                     <button ref=${product.id} class="boton_venta BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
                 </div>
             </div>
@@ -108,19 +107,11 @@ function chequearEdad (edad) {
        addEventListener('click' ,incluirNombre)
        botonSalir.innerText ='Salir'
 
-     const buscador = (array, texto) => {
-        return array.filter(producto => producto.nombre.toLowerCase().includes(texto.toLowerCase()))
-    }
     
-
     
-    const buscar = (e) => {
-        e.preventDefault();    
-        renderProducts(buscador(products, input.value), contenedor);
-    }
     mensajeMenoriaEdad.innerText= '';
 
-    input.addEventListener('input', buscar);
+    
     renderProducts(contenedor);
     renderProducts(carrito, contenedorCarrito);
     renderCarrito(carrito,contenedorCarrito);
@@ -134,6 +125,16 @@ mensajeMenoriaEdad.innerText = 'Lo sentimos  ' + (localStorage.getItem('nombre')
 botonSalir.innerText = 'Ingresar'
 }
 }
+const buscador = (array, texto) => {
+    
+    return array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
+}
+
+const buscar = (e) => {
+    e.preventDefault();    
+    renderProducts(buscador(products, input.value), contenedor);
+}
+input.addEventListener(input, buscar);
 
 function ingresoUsuario () {
     Swal.fire({
@@ -152,7 +153,27 @@ function ingresoUsuario () {
     }
     })
 }
+function eliminarProducto(id, condicion){
+    let productoCarrito = recuperarCarrito();
+    let posicionEliminar = productoCarrito.findIndex(productoCarrito => productoCarrito.id== id);
+   if (condicion == 1 ){
 
+        productoCarrito[posicionEliminar].cantidad -=1;
+        if (productoCarrito[posicionEliminar].cantidad == 0){
+            productoCarrito.splice(posicionEliminar,1);
+        }
+        ingresoCarrito(productoCarrito);
+        let carro = recuperarCarrito();
+       
+    renderCarrito(carro, contenedorCarrito);
+        
+  } else {
+    productoCarrito[posicionEliminar].cantidad +=1;
+    ingresoCarrito(productoCarrito);
+    let carro = recuperarCarrito();
+    renderCarrito(carro, contenedorCarrito);
+  }
+} 
 function handleSalir () {
     localStorage.removeItem('nombre');
     localStorage.removeItem('anioNacimiento');
@@ -170,4 +191,8 @@ botonSalir.addEventListener('click', handleSalir)
 
 function ingresoCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function recuperarCarrito() {
+    localStorage.getItem(localStorage.getItem('carrito'))
 }
