@@ -154,25 +154,18 @@ function ingresoUsuario () {
     })
 }
 function eliminarProducto(id, condicion){
-    let productoCarrito = recuperarCarrito();
+    let productoCarrito = carrito;
     let posicionEliminar = productoCarrito.findIndex(productoCarrito => productoCarrito.id== id);
    if (condicion == 1 ){
 
-        productoCarrito[posicionEliminar].cantidad -=1;
-        if (productoCarrito[posicionEliminar].cantidad == 0){
+        productoCarrito[posicionEliminar].cantidad -=1;}
+    if (productoCarrito[posicionEliminar].cantidad == 0){
             productoCarrito.splice(posicionEliminar,1);
         }
-        ingresoCarrito(productoCarrito);
-        let carro = recuperarCarrito();
-       
-    renderCarrito(carro, contenedorCarrito);
+    ingresoCarrito(productoCarrito);       
+    renderCarrito(carrito, contenedorCarrito);
         
-  } else {
-    productoCarrito[posicionEliminar].cantidad +=1;
-    ingresoCarrito(productoCarrito);
-    let carro = recuperarCarrito();
-    renderCarrito(carro, contenedorCarrito);
-  }
+  
 } 
 function handleSalir () {
     localStorage.removeItem('nombre');
@@ -193,6 +186,3 @@ function ingresoCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-function recuperarCarrito() {
-    localStorage.getItem(localStorage.getItem('carrito'))
-}
