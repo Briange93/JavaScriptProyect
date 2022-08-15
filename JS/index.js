@@ -1,4 +1,3 @@
-
 const edadStorage = localStorage.getItem('anioNacimiento');
 
 function edadMinima (nacimiento) {
@@ -7,23 +6,27 @@ function edadMinima (nacimiento) {
     return edadUsuario;    
 }
 
+    
+
 const nombreUsuario = document.getElementById('nombre-usuario');
 const anioNacimiento =localStorage.getItem('añoNacimiento');
-const input = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInput');
 const botonSalir = document.getElementById('btn-salir');
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
 const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
-const formularioCompra = document.getElementById('formulario-compra');
-
+const confirmaCompra = document.getElementById('confirmar-compra');
+const input = document.getElementById('input-form');
+const botonComprar = document.getElementById('btn-comprar');
+let products = [];
 
 
 
 const renderProducts = ( target) => {
     fetch(`./products.json`)
     .then ((response)=> response.json())
-    .then((products)=>{
-    
+    .then((respuesta)=>{
+     products = respuesta;
     let acumulador = '';
     products.map(product => {
         acumulador += `
@@ -55,6 +58,7 @@ const handleAgregarCarrito =(e) => {
     fetch(`./products.json`)
     .then ((response)=> response.json())
     .then((products)=>{
+        
     const product = products.find(product => product.id === id);
     if(carrito.some(el => el.id === product.id)){
         const position = carrito.findIndex(el => el.id === product.id)
@@ -75,6 +79,7 @@ const handleAgregarCarrito =(e) => {
     renderProducts(carrito, contenedorCarrito);
     renderCarrito(carrito,contenedorCarrito);
 })}
+
 const renderCarrito = (caract, target) => {
     let acumulador = '';
     caract.map(product => {
@@ -85,8 +90,8 @@ const renderCarrito = (caract, target) => {
                 <img src=${product.imgURL} width="100" height="175" class="card-img-top" alt="${product.nombre}">
                 <p class="mt-2 card-text"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
-                    <button ref=${product.id} class="btn btn-primary button my-2 col-md-3">Añadir al carrito</button>
-                    <button ref=${product.id} class="boton_venta BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
+                    <button ref=${product.id} class=" btn button  btn-secondary  my-2 col-md-3">Añadir al carrito</button>
+                    <button ref=${product.id} class=" BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
                 </div>
             </div>
         </div>   
@@ -132,9 +137,9 @@ const buscador = (array, texto) => {
 
 const buscar = (e) => {
     e.preventDefault();    
-    renderProducts(buscador(products, input.value), contenedor);
+    renderProducts(buscador(products, searchInput.value), contenedor);
 }
-input.addEventListener(input, buscar);
+searchInput.addEventListener(searchInput, buscar);
 
 function ingresoUsuario () {
     Swal.fire({
@@ -186,3 +191,30 @@ function ingresoCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
+const compraConfirmada = () =>{
+    if (input.value){
+        Swal.fire({
+            icon: 'success',
+            title: 'Gracias por tu compra!',
+            text: 'Todos los detalles de tu compra seran enviados via Email.',
+            
+          })
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Regresa!',
+            text: 'Te faltan completar algunos campos obligatorios',
+          })
+    }
+}
+confirmaCompra.addEventListener('click', compraConfirmada);
+
+function validoCarrito() {
+    if (carrito == ''){
+        botonComprar.disabled = true;
+    }else{
+        botonComprar.disabled = false;
+    }
+    }
+  validoCarrito();

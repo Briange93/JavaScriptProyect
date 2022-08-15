@@ -72,6 +72,7 @@ box-shadow:2px 6px 20px 0 #000 ;
 }
 .btn-secondary{
     background-color: #363636;
+    color: #fff !important;
 }
 .btn-carrito{
     background-color: #363636;
