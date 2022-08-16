@@ -83,6 +83,7 @@ const handleAgregarCarrito =(e) => {
 })}
 
 const renderCarrito = (caract, target) => {
+    let total = 0;
     let acumulador = '';
     caract.map(product => {
         acumulador += `
@@ -90,14 +91,18 @@ const renderCarrito = (caract, target) => {
             <div class="card-body m-4">
                 <h5 class=" m-2 card-title">${product.nombre}</h5>
                 <img src=${product.imgURL} width="100" height="175" class="card-img-top" alt="${product.nombre}">
-                <p class="mt-2 card-text" id="subtotales"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Sub Total: $${product.precio * product.cantidad}.</p>
+                <p class="card-text producto-precio">Precio: $${product.precio}\n</p>
+                <p class="mt-2 card-text subtotal"> Cantidad selecionada: ${product.cantidad}  </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
                     <button ref=${product.id} class=" btn button  btn-secondary  my-2 col-md-3">Añadir al carrito</button>
                     <button ref=${product.id} class=" BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
                 </div>
             </div>
         </div>   
-        `
+        `;
+        total = total + (product.precio * product.cantidad);
+        totalcontainer = document.getElementById('precio-total');
+        totalcontainer.innerHTML = `Total: $ ${total}`;
     })
 
     target.innerHTML = acumulador;   
@@ -134,7 +139,7 @@ botonSalir.innerText = 'Ingresar'
 }
 const buscador = (array, texto) => {
     
-    return array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
+    array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
     
 }
 
