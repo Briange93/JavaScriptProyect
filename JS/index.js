@@ -1,4 +1,4 @@
-const edadStorage = localStorage.getItem('anioNacimiento');
+
 
 function edadMinima (nacimiento) {
     const anio = 2022 ;
@@ -7,7 +7,7 @@ function edadMinima (nacimiento) {
 }
 
     
-
+const edadStorage = localStorage.getItem('anioNacimiento');
 const nombreUsuario = document.getElementById('nombre-usuario');
 const anioNacimiento =localStorage.getItem('añoNacimiento');
 const searchInput = document.getElementById('searchInput');
@@ -18,7 +18,8 @@ const mensajeMenoriaEdad = document.getElementById('contenedor-menores');
 const confirmaCompra = document.getElementById('confirmar-compra');
 const input = document.getElementById('input-form');
 const botonComprar = document.getElementById('btn-comprar');
-let products = [];
+const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
+
 
 
 
@@ -26,7 +27,7 @@ const renderProducts = ( target) => {
     fetch(`./products.json`)
     .then ((response)=> response.json())
     .then((respuesta)=>{
-     products = respuesta;
+    let products = respuesta;
     let acumulador = '';
     products.map(product => {
         acumulador += `
@@ -78,6 +79,7 @@ const handleAgregarCarrito =(e) => {
     ingresoCarrito(carrito);
     renderProducts(carrito, contenedorCarrito);
     renderCarrito(carrito,contenedorCarrito);
+    validoCarrito();
 })}
 
 const renderCarrito = (caract, target) => {
@@ -88,7 +90,7 @@ const renderCarrito = (caract, target) => {
             <div class="card-body m-4">
                 <h5 class=" m-2 card-title">${product.nombre}</h5>
                 <img src=${product.imgURL} width="100" height="175" class="card-img-top" alt="${product.nombre}">
-                <p class="mt-2 card-text"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Sub Total: $${product.precio * product.cantidad}.</p>
+                <p class="mt-2 card-text" id="subtotales"> Cantidad selecionada: ${product.cantidad} </br> Precio: $${product.precio} </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
                     <button ref=${product.id} class=" btn button  btn-secondary  my-2 col-md-3">Añadir al carrito</button>
                     <button ref=${product.id} class=" BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
@@ -101,7 +103,7 @@ const renderCarrito = (caract, target) => {
     target.innerHTML = acumulador;   
 
 }
-const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
+
 
 function chequearEdad (edad) {
     console.log(edad)
@@ -133,11 +135,13 @@ botonSalir.innerText = 'Ingresar'
 const buscador = (array, texto) => {
     
     return array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
+    
 }
 
 const buscar = (e) => {
     e.preventDefault();    
     renderProducts(buscador(products, searchInput.value), contenedor);
+   
 }
 searchInput.addEventListener(searchInput, buscar);
 
@@ -169,7 +173,7 @@ function eliminarProducto(id, condicion){
         }
     ingresoCarrito(productoCarrito);       
     renderCarrito(carrito, contenedorCarrito);
-        
+    validoCarrito();
   
 } 
 function handleSalir () {
@@ -217,4 +221,5 @@ function validoCarrito() {
         botonComprar.disabled = false;
     }
     }
-  validoCarrito();
+ 
+    validoCarrito();
