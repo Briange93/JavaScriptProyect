@@ -81,7 +81,6 @@ const handleAgregarCarrito =(e) => {
     renderCarrito(carrito,contenedorCarrito);
     validoCarrito();
 })}
-
 const renderCarrito = (caract, target) => {
     let total = 0;
     let acumulador = '';
@@ -103,6 +102,7 @@ const renderCarrito = (caract, target) => {
         total = total + (product.precio * product.cantidad);
         totalcontainer = document.getElementById('precio-total');
         totalcontainer.innerHTML = `Total: $ ${total}`;
+
     })
 
     target.innerHTML = acumulador;   
@@ -139,7 +139,7 @@ botonSalir.innerText = 'Ingresar'
 }
 const buscador = (array, texto) => {
     
-    array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
+   return array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
     
 }
 
@@ -181,6 +181,7 @@ function eliminarProducto(id, condicion){
     validoCarrito();
   
 } 
+
 function handleSalir () {
     localStorage.removeItem('nombre');
     localStorage.removeItem('anioNacimiento');
@@ -227,4 +228,4 @@ function validoCarrito() {
     }
     }
  
-    validoCarrito();
+validoCarrito();

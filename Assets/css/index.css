@@ -116,3 +116,13 @@ box-shadow:2px 6px 20px 0 #000 ;
 #footer{
     background-color: #198754;
 }
+
+#precio-total{
+    color: #fff;
+    font-size: 20px;
+    align-self: center;
+}
+#btn-salir{
+    margin-left: 20px;
+ 
+}
