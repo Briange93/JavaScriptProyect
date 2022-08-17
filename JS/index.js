@@ -1,16 +1,12 @@
-
-
 function edadMinima (nacimiento) {
     const anio = 2022 ;
     const edadUsuario = anio - nacimiento ;
     return edadUsuario;    
 }
-
-    
 const edadStorage = localStorage.getItem('anioNacimiento');
 const nombreUsuario = document.getElementById('nombre-usuario');
 const anioNacimiento =localStorage.getItem('añoNacimiento');
-const searchInput = document.getElementById('searchInput');
+
 const botonSalir = document.getElementById('btn-salir');
 const contenedor = document.getElementById('contenedor');
 const contenedorCarrito = document.getElementById('carrito');
@@ -19,9 +15,6 @@ const confirmaCompra = document.getElementById('confirmar-compra');
 const input = document.getElementById('input-form');
 const botonComprar = document.getElementById('btn-comprar');
 const carrito = JSON.parse(localStorage.getItem('carrito')) ||[];
-
-
-
 
 const renderProducts = ( target) => {
     fetch(`./products.json`)
@@ -55,7 +48,9 @@ const renderProducts = ( target) => {
 }
 
 const handleAgregarCarrito =(e) => {
-    const id = parseInt(e.target.getAttribute('ref'));
+    console.log('desde home');
+    console.log(e);
+    const id = parseInt(e.target ?  e.target.getAttribute('ref'): e);
     fetch(`./products.json`)
     .then ((response)=> response.json())
     .then((products)=>{
@@ -64,6 +59,43 @@ const handleAgregarCarrito =(e) => {
     if(carrito.some(el => el.id === product.id)){
         const position = carrito.findIndex(el => el.id === product.id)
         carrito[position].cantidad = carrito[position].cantidad + 1;
+        console.log('1');
+    }else{
+        carrito.push({
+            id:product.id,
+            imgURL: product.imgURL,
+            nombre: product.nombre,
+            fabricante: product.fabricante,
+            precio: product.precio,
+            descripcion: "",
+            cantidad: 1
+     })
+
+     console.log(contenedorCarrito);
+    }
+    console.log('2');
+    ingresoCarrito(carrito);
+    console.log('3');
+    renderProducts(carrito, contenedorCarrito);
+    console.log('4');
+    renderCarrito(carrito,contenedorCarrito);
+    console.log('5');
+    validoCarrito();
+    console.log('6');
+})
+}
+const handleAgregarCarritoDesdeModal =(e) => {
+    console.log('desde modal');
+    const id = 1 ;
+    fetch(`./products.json`)
+    .then ((response)=> response.json())
+    .then((products)=>{
+        
+    const product = products.find(product => product.id === id);
+    if(carrito.some(el => el.id === product.id)){
+        const position = carrito.findIndex(el => el.id === product.id)
+        carrito[position].cantidad = carrito[position].cantidad + 1;
+        console.log('1');
     }else{
         carrito.push({
             id:product.id,
@@ -76,11 +108,17 @@ const handleAgregarCarrito =(e) => {
      })
      console.log(contenedorCarrito);
     }
+    console.log('2');
     ingresoCarrito(carrito);
+    console.log('3');
     renderProducts(carrito, contenedorCarrito);
-    renderCarrito(carrito,contenedorCarrito);
+    console.log('4');
+    
+    console.log('5');
     validoCarrito();
-})}
+    console.log('6');
+})
+}
 const renderCarrito = (caract, target) => {
     let total = 0;
     let acumulador = '';
@@ -93,7 +131,7 @@ const renderCarrito = (caract, target) => {
                 <p class="card-text producto-precio">Precio: $${product.precio}\n</p>
                 <p class="mt-2 card-text subtotal"> Cantidad selecionada: ${product.cantidad}  </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
-                    <button ref=${product.id} class=" btn button  btn-secondary  my-2 col-md-3">Añadir al carrito</button>
+                    <button ref=${product.id} class=" btn btn-secondary  my-2 col-md-3" onclick= handleAgregarCarrito("${product.id}")>Añadir al carrito</button>
                     <button ref=${product.id} class=" BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
                 </div>
             </div>
@@ -137,18 +175,8 @@ mensajeMenoriaEdad.innerText = 'Lo sentimos  ' + (localStorage.getItem('nombre')
 botonSalir.innerText = 'Ingresar'
 }
 }
-const buscador = (array, texto) => {
-    
-   return array.filter(products => products.nombre.toLowerCase().includes(texto.toLowerCase()))
-    
-}
 
-const buscar = (e) => {
-    e.preventDefault();    
-    renderProducts(buscador(products, searchInput.value), contenedor);
-   
-}
-searchInput.addEventListener(searchInput, buscar);
+
 
 function ingresoUsuario () {
     Swal.fire({
