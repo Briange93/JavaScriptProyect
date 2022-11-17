@@ -59,7 +59,6 @@ const handleAgregarCarrito =(e) => {
     if(carrito.some(el => el.id === product.id)){
         const position = carrito.findIndex(el => el.id === product.id)
         carrito[position].cantidad = carrito[position].cantidad + 1;
-        console.log('1');
     }else{
         carrito.push({
             id:product.id,
@@ -73,19 +72,13 @@ const handleAgregarCarrito =(e) => {
 
      console.log(contenedorCarrito);
     }
-    console.log('2');
     ingresoCarrito(carrito);
-    console.log('3');
     renderProducts(carrito, contenedorCarrito);
-    console.log('4');
     renderCarrito(carrito,contenedorCarrito);
-    console.log('5');
     validoCarrito();
-    console.log('6');
 })
 }
 const handleAgregarCarritoDesdeModal =(e) => {
-    console.log('desde modal');
     const id = 1 ;
     fetch(`./products.json`)
     .then ((response)=> response.json())
@@ -95,7 +88,6 @@ const handleAgregarCarritoDesdeModal =(e) => {
     if(carrito.some(el => el.id === product.id)){
         const position = carrito.findIndex(el => el.id === product.id)
         carrito[position].cantidad = carrito[position].cantidad + 1;
-        console.log('1');
     }else{
         carrito.push({
             id:product.id,
@@ -108,15 +100,9 @@ const handleAgregarCarritoDesdeModal =(e) => {
      })
      console.log(contenedorCarrito);
     }
-    console.log('2');
     ingresoCarrito(carrito);
-    console.log('3');
     renderProducts(carrito, contenedorCarrito);
-    console.log('4');
-    
-    console.log('5');
     validoCarrito();
-    console.log('6');
 })
 }
 const renderCarrito = (caract, target) => {
@@ -131,7 +117,7 @@ const renderCarrito = (caract, target) => {
                 <p class="card-text producto-precio">Precio: $${product.precio}\n</p>
                 <p class="mt-2 card-text subtotal"> Cantidad selecionada: ${product.cantidad}  </br> Sub Total: $${product.precio * product.cantidad}.</p>
                 <div class="row justify-content-around">
-                    <button ref=${product.id} class=" btn btn-secondary  my-2 col-md-3" onclick= handleAgregarCarrito("${product.id}")>Añadir al carrito</button>
+                    <button ref=${product.id} class=" btn btn-secondary  my-2 col-md-3" onclick= handleAgregarCarrito("${product.id}")>Sumar otro</button>
                     <button ref=${product.id} class=" BCQ btn btn-secondary my-2 col-md-3" id="botonCarritoQuitar" onclick= eliminarProducto("${product.id}",1)> Quitar </button>
                 </div>
             </div>
@@ -149,7 +135,6 @@ const renderCarrito = (caract, target) => {
 
 
 function chequearEdad (edad) {
-    console.log(edad)
     if(edad > 17){
        const incluirNombre = () =>{
         nombreUsuario.innerText =( localStorage.getItem('nombre') || '' );

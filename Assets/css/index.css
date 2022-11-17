@@ -1,5 +1,5 @@
 body {
-    background-color: hsl(160, 72%, 35%);
+    background-color: #101919;
     margin: 0;
     justify-content: center;
 }
@@ -24,7 +24,7 @@ border-radius: 10%;
 box-shadow:2px 6px 20px 0 #000 ;
 }
 .container-fluid{
-    background-color: hsl(160, 72%, 35%);
+    background-color: #717744;
     border: 0;
 
 }
@@ -36,17 +36,18 @@ box-shadow:2px 6px 20px 0 #000 ;
 }
 
 .container{
-    background-color: hsl(160, 72%, 35%) !important;
+    background-color: #101919 !important;
     
     margin: center;
 }
 .btn-primary{
     margin-left: 30px;
-    background-color: hsl(160, 72%, 35%);
+    background-color: #101919;
+    color: #fff;
 }
 .card{
-    background-color: rgb(48, 48, 48);
-    color:hsl(311, 100%, 93%);
+    background-color: #494E2D;
+    color:#000;
     margin-left: 100px;   
 }
 .card-img-top{
@@ -58,13 +59,13 @@ box-shadow:2px 6px 20px 0 #000 ;
     
 }
 .modal-content{
-    background-color: hsl(160, 72%, 35%);
+    background-color: #494E2D;
 }
 .modal-header{
-    background-color: #198754;
+    background-color: #494E2D;
 }
 .modal-footer{
-    background-color: #198754;
+    background-color: #494E2D;
 }
 .btn-comprar{
     background-color: #363636;
@@ -77,7 +78,7 @@ box-shadow:2px 6px 20px 0 #000 ;
 .btn-carrito{
     background-color: #363636;
     border: none;
-    color: #198754;
+    color: #fff;
 }
 .btn-outline-success{
     background-color: #363636;
@@ -85,11 +86,11 @@ box-shadow:2px 6px 20px 0 #000 ;
 }
 .form-control{
     background-color: #363636;
-    color: #198754;
+    color: #494E2D;
 }
 .button{
     border: none;
-    color: #363636;
+    color: #fff;
 }
 .btn-cerrar{
     align-self: center;
